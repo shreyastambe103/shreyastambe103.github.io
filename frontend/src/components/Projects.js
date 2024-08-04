@@ -6,7 +6,7 @@ const Projects = () => {
     <div>
       <h2>Projects</h2>
       <ul>
-        <li><strong>Spotstitch:</strong> A social media platform developed with the MERN stack.</li>
+        <li><strong>Attendify:</strong> A Student Attendance Tracker built using JAVA.</li>
         <li><strong>Workout Tracker:</strong> A MERN app to track workouts and fitness progress.</li>
         {/* Add more projects as needed */}
       </ul>
