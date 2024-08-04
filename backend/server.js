@@ -1,29 +1,23 @@
-// backend/server.js
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const userRoutes = require('./routes/userRoutes');
-app.use('/api', userRoutes);
-
-dotenv.config();
+const userRoutes = require('./routes/userRoutes'); // Adjust the path as needed
 
 const app = express();
 
-app.use(cors());
+// Middleware to parse JSON requests
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI;
+// Register routes
+app.use('/api', userRoutes);
 
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+// Connect to MongoDB
+mongoose.connect('mongodb+srv://shreyastambe:shreyastambe103@mernapp.i3htolw.mongodb.net/?retryWrites=true&w=majority&appName=MERNapp', {
+  useNewUrlParser: true, // Optional but harmless
+  useUnifiedTopology: true // Optional but harmless
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.log('MongoDB connection error:', err));
 
-app.get('/', (req, res) => {
-  res.send('Backend is running');
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Start the server
+const PORT = process.env.PORT || 4000; // Make sure this port is available
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
